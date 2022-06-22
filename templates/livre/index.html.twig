@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+    <h1>Livre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title_livre</th>
+                <th>Auteur_livre</th>
+                <th>Resume_livre</th>
+                <th>Prix_livre</th>
+                <th>Datesortie_livre</th>
+                <th>Genre_livre</th>
+                <th>Edition_livre</th>
+                <th>Image_livre</th>
+                <th>Isbn_livre</th>
+                <th>Stock_livre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titleLivre }}</td>
+                <td>{{ livre.auteurLivre }}</td>
+                <td>{{ livre.resumeLivre }}</td>
+                <td>{{ livre.prixLivre }}</td>
+                <td>{{ livre.datesortieLivre ? livre.datesortieLivre|date('Y-m-d') : '' }}</td>
+                <td>{{ livre.genreLivre }}</td>
+                <td>{{ livre.editionLivre }}</td>
+                <td>{{ livre.imageLivre }}</td>
+                <td>{{ livre.isbnLivre }}</td>
+                <td>{{ livre.stockLivre }}</td>
+                <td>
+                    <a href="{{ path('app_livre_show', {'id': livre.id}) }}">show</a>
+                    <a href="{{ path('app_livre_edit', {'id': livre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livre_new') }}">Create new</a>
+{% endblock %}
